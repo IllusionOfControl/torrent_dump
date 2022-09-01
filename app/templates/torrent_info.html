@@ -1,0 +1,9 @@
+{% block content %}
+<h1>Torrent info</h1>
+  <p>{{ torrent.name }}</p>
+  <p>size: {{ torrent.download_size }}</p>
+  <a href="{{ url_for('torrents.delete_torrent', uid=torrent.uid) }}">< Delete ></a>
+  <a href="{{ url_for('torrents.retrieve_torrent_info', uid=torrent.uid) }}">< Info ></a>
+  <a href="{{ url_for('torrents.retrieve_torrent_info', uid=torrent.uid) }}">< Torrent ></a>
+  <a href="{{ torrent.magnet_link }}">< Magnet ></a>
+{% endblock %}

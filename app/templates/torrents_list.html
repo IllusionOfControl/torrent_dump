@@ -1,0 +1,14 @@
+{% block content %}
+<h1>Torrents list</h1>
+<ul>
+  {% for torrent in torrents %}
+    <li>
+      <h5>{{ torrent.name }}</h5>
+      <p>size: {{ torrent.download_size }}</p>
+      <a href="{{ url_for('torrents.delete_torrent', uid=torrent.uid) }}">< Delete ></a>
+      <a href="{{ url_for('torrents.retrieve_torrent_info', uid=torrent.uid) }}">< Info ></a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
