@@ -45,6 +45,7 @@ class File(CRUDMixin, db.Model):
     __tablename__ = "files"
 
     id = db.Column(db.Integer, primary_key=True)
+    torrent_id = db.Column(db.Integer, db.ForeignKey('torrents.id'))
     path = db.Column(db.String(256))
     size = db.Column(db.Integer)
     
