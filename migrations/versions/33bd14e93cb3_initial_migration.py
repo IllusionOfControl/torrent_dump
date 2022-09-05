@@ -1,8 +1,8 @@
 """Initial migration.
 
-Revision ID: ede97f9930f4
+Revision ID: 33bd14e93cb3
 Revises: 
-Create Date: 2022-09-02 00:30:06.462380
+Create Date: 2022-09-05 12:52:29.201773
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ede97f9930f4'
+revision = '33bd14e93cb3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('torrents',
-    sa.Column('uid', sa.String(length=36), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('uid', sa.String(length=36), nullable=True),
     sa.Column('name', sa.String(length=256), nullable=True),
     sa.Column('download_size', sa.Integer(), nullable=True),
     sa.Column('files_count', sa.Integer(), nullable=True),
@@ -33,7 +34,8 @@ def upgrade():
     sa.Column('magnet_link', sa.String(), nullable=True),
     sa.Column('uploaded_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('is_removed', sa.Boolean(), nullable=True),
-    sa.PrimaryKeyConstraint('uid')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('uid')
     )
     # ### end Alembic commands ###
 
