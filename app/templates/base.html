@@ -117,7 +117,7 @@
             <span>
                 <a class="brand" href="{{ url_for('torrents.index') }}">Torrent bin</a>
                 <a href="{{ url_for('torrents.index') }}">List</a>
-                <a href="#">Search</a>
+                <a href="{{ url_for('torrents.retrieve_search_form') }}">Search</a>
                 <a href="{{ url_for('upload.upload_file') }}">Upload</a>
             </span>
         </nav>

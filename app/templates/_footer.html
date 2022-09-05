@@ -1,9 +1,9 @@
 {% block footer %}
 <hr>
 <section class="search">
-    <form>
+    <form action="{{ url_for('torrents.search_by_torrents_name') }}" method="get">
         <label>Search:</label>
-        <input type="text">
+        <input name="query" type="text">
         <input type="submit" value="Find!">
     </form>
 <!--    <span>{#{ torrents|length }#} files</span>-->
