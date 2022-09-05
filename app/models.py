@@ -30,7 +30,8 @@ class CRUDMixin:
 class Torrent(CRUDMixin, db.Model):
     __tablename__ = "torrents"
 
-    uid = db.Column(db.String(36), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.String(36), unique=True)
     name = db.Column(db.String(256))
     download_size = db.Column(db.Integer)
     files_count = db.Column(db.Integer)
