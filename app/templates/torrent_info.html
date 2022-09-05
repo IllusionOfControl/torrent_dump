@@ -1,7 +1,53 @@
+{% extends "base.html" %}
+
 {% block content %}
 <h1>Torrent info</h1>
-  <p>{{ torrent.name }}</p>
-  <p>size: {{ torrent.download_size }}</p>
+  <table>
+    <tbody>
+    <tr>
+      <td>
+        Name:
+      </td>
+      <td>{{ torrent.name }}}</td>
+    </tr>
+
+    <tr>
+      <td>
+        Download size:
+      </td>
+      <td>{{ '{0:,}'.format(torrent.download_size) }} bytes</td>
+    </tr>
+
+        <tr>
+      <td>
+        Files count:
+      </td>
+      <td>{{ files|length }}</td>
+    </tr>
+
+    <tr>
+      <td>
+        Files:
+      </td>
+      <td>
+        <table>
+          <tbody>
+            {% for file in files %}
+              <tr>
+                <td>
+                  {{ file.path }}
+                </td>
+                <td align="right">
+                  {{ file.size }} bytes
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <a href="{{ url_for('torrents.delete_torrent', uid=torrent.uid) }}">< Delete ></a>
   <a href="{{ url_for('torrents.retrieve_torrent_info', uid=torrent.uid) }}">< Info ></a>
   <a href="{{ url_for('torrents.retrieve_torrent_info', uid=torrent.uid) }}">< Torrent ></a>

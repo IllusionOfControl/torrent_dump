@@ -1,6 +1,12 @@
+{% extends "base.html" %}
+
 {% block content %}
-        <form method="POST" enctype="multipart/form-data">
+<div class="form-container">
+        <form class="upload-form" method="POST" enctype="multipart/form-data">
+            <label>Files:</label>
             <input name="torrents" type="file" multiple>
-            <input type="submit">
+            <br>
+            <input type="submit" value="Upload files">
         </form>
+    </div>
 {% endblock %}

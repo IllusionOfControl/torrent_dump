@@ -2,10 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title }}</title>
+    <style>
+        nav {
+            background-color: #07a00a;
+            padding: 2px;
+            margin: auto;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 13pt;
+            font-family: Verdana, Geneva, sans-serif;
+            padding-right: 2px;
+        }
+
+        nav a:not(.brand)::before {
+            content: "|";
+            padding-right: 4px;
+        }
+
+        .brand {
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 85%;
+            min-width: 1080px;
+            margin: auto;
+        }
+
+        main {
+            background-color: #c2fac3;
+            min-height: 586px;
+        }
+
+        .item-list {
+            padding-top: 8px;
+            border-collapse: separate;
+            width: 100%;
+        }
+
+        .item-list td {
+            padding: 0;
+        }
+
+        .id {
+            width: max-content;
+            text-align: right;
+            font-size: 14pt;
+            vertical-align: top;
+            color: rgb(133, 133, 133);
+        }
+
+        .title {
+            font-size: 14pt;
+            /*word-wrap: break-word;*/
+            white-space: normal;
+            overflow: hidden;
+            vertical-align: top;
+            width: auto;
+        }
+
+        .spacer {
+            height: 8px;
+        }
+
+        .actions {
+            vertical-align: top;
+            width: max-content;
+            white-space: nowrap;
+            text-align: right;
+            padding-right: 8px;
+        }
+
+        .search {
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .search form {
+            padding-bottom: 8px;
+        }
+
+        .search form input[type="submit"] {
+            border-radius: 0px;
+        }
+
+        .size {
+            text-align: right;
+            width: max-content;
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+        .upload-form {
+            padding-top: 24px;
+        }
+
+        .upload-form input {
+            margin-bottom: 24px;
+        }
+
+        .header {
+            text-align: left;
+            color: #737373;
+        }
+    </style>
 </head>
 <body>
-{% block content %}
-{% endblock %}
+    <div class="container">
+        <nav>
+            <span>
+                <a class="brand" href="{{ url_for('torrents.index') }}">Torrent bin</a>
+                <a href="{{ url_for('torrents.index') }}">List</a>
+                <a href="#">Search</a>
+                <a href="{{ url_for('upload.upload_file') }}">Upload</a>
+            </span>
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
 </body>
 </html>
