@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>Torrent dump</title>
     <style>
         nav {
             background-color: #07a00a;
@@ -115,7 +115,7 @@
     <div class="container">
         <nav>
             <span>
-                <a class="brand" href="{{ url_for('torrents.index') }}">Torrent bin</a>
+                <a class="brand" href="{{ url_for('torrents.index') }}">Torrent dump</a>
                 <a href="{{ url_for('torrents.index') }}">List</a>
                 <a href="{{ url_for('torrents.retrieve_search_form') }}">Search</a>
                 <a href="{{ url_for('upload.upload_file') }}">Upload</a>
