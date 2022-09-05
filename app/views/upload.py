@@ -1,15 +1,17 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from app.models import Torrent
+from app.models import Torrent, File
 from app.services.torrent import (
     generate_magnet,
     get_files_count,
     get_torrent_name,
     decode_metadata,
-    calculate_download_size
+    calculate_download_size,
+    get_file_list
 )
 from app.services.upload import verify_file_extension, save_file
 import uuid
 import hashlib
+import os
 
 
 blueprint = Blueprint("upload", __name__)
@@ -54,6 +56,17 @@ def upload_file():
         )
 
         torrent.save()
+
+        files_obj = []
+        for file in get_file_list(metadata):
+            path = os.path.join(*file["path"])
+            files_obj.append(File(
+                torrent_id=torrent.id,
+                path=path,
+                size=file["length"]
+            ))
+
+        File.save_all(files_obj)
         save_file(torrent.uid, file_raw)
 
     return redirect("/")
