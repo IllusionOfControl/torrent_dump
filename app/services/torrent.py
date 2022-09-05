@@ -23,7 +23,7 @@ def generate_magnet(metadata):
     params = {
         "xt": "urn:btih:%s" % b32_hash,
         "dn": metadata["info"]["name"],
-        "tr": metadata["announce"],
+        "tr": metadata["announce"] if "announce" in metadata else None,
     }
 
     param_str = url_parse.urlencode(params)
@@ -44,11 +44,14 @@ def calculate_download_size(metadata):
 
 
 def get_files_count(metadata):
-    if check_single_file_download(metadata):
-        return 1
-    else:
-        return len(metadata["info"]['files'])
+    return len(get_file_list(metadata))
 
 
 def get_file_list(metadata):
-    return metadata["info"]['files']
+    if check_single_file_download(metadata):
+        return [{
+            "path": [metadata["info"]["name"]],
+            "length": metadata["info"]["length"]
+        }]
+    else:
+        return metadata["info"]['files']
