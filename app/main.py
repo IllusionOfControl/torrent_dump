@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_migrate import Migrate
 from app.database import database
-from app.core.config import get_application_config
+from app.core.config import get_application_config, get_app_env
 from app.views import upload, torrents
 
 
 migrate = Migrate()
 
 
-def get_application(env="dev") -> Flask:
+def get_application(env=get_app_env()) -> Flask:
     application = Flask(__name__)
 
     config = get_application_config(env)

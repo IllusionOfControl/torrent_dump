@@ -1,5 +1,5 @@
 from app.errors import FileExtNotAllowed
-from app.core.config import Config
+from flask import current_app
 import os
 
 ALLOWED_FILE_EXTENSIONS = ["torrent"]
@@ -12,6 +12,6 @@ def verify_file_extension(filename):
 
 
 def save_file(filename, file_raw):
-    torrent_path = os.path.join(Config.TORRENT_UPLOAD_PATH, filename)
+    torrent_path = os.path.join(current_app.config.get("TORRENT_UPLOAD_PATH"), filename)
     with open(torrent_path, 'wb') as file:
         file.write(file_raw)
